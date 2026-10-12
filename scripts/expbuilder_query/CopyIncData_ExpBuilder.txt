@@ -1,0 +1,7 @@
+-- Query for Pipeline Expression Builder Copy Incremental Data.
+
+@concat(
+    'SELECT * FROM source_cars_data WHERE date_id > ''',
+    activity('last_load').output.value[0].last_load,''' AND date_id <= ''', activity('max_load').output.value[0].max_date,
+    ''''
+)
