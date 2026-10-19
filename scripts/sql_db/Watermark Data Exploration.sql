@@ -4,8 +4,6 @@ CREATE TABLE water_table
     last_load VARCHAR(2000)
 )
 
-SELECT * FROM water_table
-
 -- get the lowest date_id
 SELECT min(date_id) FROM dbo.source_cars_data
 
