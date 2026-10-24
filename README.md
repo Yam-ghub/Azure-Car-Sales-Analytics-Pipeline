@@ -14,5 +14,5 @@ This project processes car sales data end to end using Azure cloud technologies.
 8. I built the Gold layer as a star schema with four dimension tables (gold_dim_model, gold_dim_branch, gold_dim_dealer, gold_dim_date) and one fact table (fact_sales), making the data analytics-ready.
 
 
-
-
+## Pipeline Architecture
+<img src="img/Pipeline_Architecture.png" alt="Pipeline Architecture" width="1200">
