@@ -15,4 +15,4 @@ This project processes car sales data end to end using Azure cloud technologies.
 
 
 ## Pipeline Architecture
-<img src="img/Pipeline_Architecture.png" alt="Pipeline Architecture" width="1200">
+<img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Pipeline_Architecture.png" width="1200">
