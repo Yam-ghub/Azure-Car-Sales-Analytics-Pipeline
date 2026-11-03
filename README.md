@@ -31,3 +31,5 @@ Azure Databricks then processes the Bronze data through Silver and Gold layers, 
 
 ## Pipeline Architecture
 <img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Pipeline_Architecture.png" width="1200">
+
+Medallion LayerEquivalent TermPurposeBronzeLanding / RawStores incrementally loaded source data in Parquet format while preserving data close to its ingested stateSilverCleansed / CuratedCleans, transforms, and deduplicates Bronze data to create a reliable datasetGoldPresentation / AnalyticsConverts curated Silver data into an analytics-ready dimensional model
