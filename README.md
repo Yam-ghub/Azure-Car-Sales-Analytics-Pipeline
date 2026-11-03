@@ -19,17 +19,21 @@ Azure Databricks then processes the Bronze data through Silver and Gold layers, 
 - Separation of ingestion, transformation, and analytics layers
 
 ## How I Built It
-1. I ingested the car sales data from GitHub into a SQL Server database using an Azure Data Factory Copy Activity.
-2. I created a watermark table in SQL Server to store the last load value, so each run knows where the previous one stopped.
-3. I added a Lookup Activity to read the last load value and the maximum load value from the source.
-4. I implemented incremental loading with upsert logic, so only new or updated records are processed and old records are never reloaded. This reduces both cost and run time.
-5. I used a second Copy Activity to move the incremental data from SQL Server into the Bronze layer in ADLS as Parquet files.
-6. I created the UpdateWatermarkTable stored procedure, which updates the last load value after each successful run.
-7. I used Azure Databricks to read the Bronze Parquet files, then transformed, cleaned, and deduplicated the data into the Silver layer.
-8. I built the Gold layer as a star schema with four dimension tables (gold_dim_model, gold_dim_branch, gold_dim_dealer, gold_dim_date) and one fact table (fact_sales), making the data analytics-ready.
-
+1. Source ingestion: I ingested the car sales dataset from GitHub into a SQL Server database using an Azure Data Factory Copy Activity.
+2. Watermark table: I created a watermark table in SQL Server to store the last successfully processed load value, allowing each pipeline run to determine where the previous load stopped.
+3. Incremental boundaries: I used Lookup Activities in Azure Data Factory to retrieve the previous watermark value and determine the maximum available load value from the source.
+4. Incremental loading: I configured the pipeline to process only records within the current watermark range, preventing the entire dataset from being reprocessed during every run. This reduces unnecessary data movement, processing time, and compute usage.
+5. Bronze ingestion: I used a second Copy Activity to move the incremental dataset from SQL Server into the Bronze layer of Azure Data Lake Storage as Parquet files.
+6. Watermark update: I created the UpdateWatermarkTable stored procedure to update the stored watermark after the successful completion of the incremental load.
+7. Silver transformation: I used Azure Databricks to read the Bronze Parquet files and perform data cleaning, transformation, and deduplication before writing the refined data into the Silver layer.
+8. Gold dimensional model: I transformed the Silver data into a Gold-layer star schema consisting of four dimension tables and one fact table, making the dataset ready for analytics and business intelligence workloads.
 
 ## Pipeline Architecture
 <img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Pipeline_Architecture.png" width="1200">
 
-Medallion LayerEquivalent TermPurposeBronzeLanding / RawStores incrementally loaded source data in Parquet format while preserving data close to its ingested stateSilverCleansed / CuratedCleans, transforms, and deduplicates Bronze data to create a reliable datasetGoldPresentation / AnalyticsConverts curated Silver data into an analytics-ready dimensional model
+| Medallion term | Equivalent term | Purpose |
+|---|---|---|
+| Bronze | Landing / Raw | Stores incrementally loaded source data in Parquet format while preserving data close to its ingested state |
+| Silver | Cleansed / Curated | Cleans, transforms, and deduplicates Bronze data to create a reliable dataset |
+| Gold | Presentation / Analytics | Converts curated Silver data into an analytics-ready dimensional model |
+
