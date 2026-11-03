@@ -1,7 +1,11 @@
 # Azure-Car-Sales-Analytics-Pipeline
 
 ## Overview
-This project processes car sales data end to end using Azure cloud technologies. The data is ingested from GitHub into SQL Server with Azure Data Factory, then loaded incrementally into Azure Data Lake Storage (ADLS) as Parquet files. Azure Databricks refines it through a medallion architecture (Bronze, Silver, Gold), producing a star-schema model that is ready for analytics.
+This project demonstrates a complete Azure-based data engineering workflow, from source ingestion and incremental processing to transformation and dimensional modeling.
+
+The solution uses Azure Data Factory (ADF) to orchestrate data movement between GitHub, SQL Server, and Azure Data Lake Storage. A watermark-based incremental loading strategy ensures that subsequent pipeline runs process only records that are new or have changed since the previous successful load.
+
+Azure Databricks then processes the Bronze data through Silver and Gold layers, where the data is cleaned, deduplicated, transformed, and modeled into a star schema suitable for downstream analytics and reporting.
 
 ## How I Built It
 1. I ingested the car sales data from GitHub into a SQL Server database using an Azure Data Factory Copy Activity.
