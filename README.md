@@ -1,10 +1,8 @@
 # Azure-Car-Sales-Analytics-Pipeline
 ## Overview
-This project demonstrates a complete Azure-based data engineering workflow, from source ingestion and incremental processing to transformation and dimensional modeling.
+Scalable Azure data engineering solution showcasing automated data ingestion, incremental processing, and orchestration using Azure Data Factory (ADF) and Azure Data Lake Storage (ADLS). ADF orchestrates data movement from GitHub and SQL Server into ADLS, while a watermark-based incremental loading strategy ensures that subsequent pipeline runs process only new or changed records.
 
-The solution uses Azure Data Factory (ADF) to orchestrate data movement between GitHub, SQL Server, and Azure Data Lake Storage. A watermark-based incremental loading strategy ensures that subsequent pipeline runs process only records that are new or have changed since the previous successful load.
-
-Azure Databricks then processes the Bronze data through Silver and Gold layers, where the data is cleaned, deduplicated, transformed, and modeled into a star schema suitable for downstream analytics and reporting.
+Azure Databricks processes the ingested data through a Bronze → Silver → Gold medallion architecture, where data is cleansed, deduplicated, and transformed into analytics-ready datasets. The Gold layer applies dimensional modeling to create a star schema optimized for downstream analytics, reporting, and business intelligence.
 
 ## What this project demonstrates:
 - Cloud-based data pipeline orchestration using Azure Data Factory
