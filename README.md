@@ -58,6 +58,7 @@ A star schema separates measurable business events from descriptive attributes. 
 ## Incremental Loading Workflow
 
 The Azure Data Factory pipeline uses a watermark-based incremental loading pattern.
+```text
 Read Previous Watermark
           │
           ▼
@@ -74,6 +75,7 @@ Validate Successful Load
           │
           ▼
 Update Watermark Table
+````
 
 The watermark defines the boundary between previously processed data and records that still need to be loaded.
 
