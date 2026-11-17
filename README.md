@@ -27,13 +27,14 @@ Azure Databricks processes the ingested data through a Bronze → Silver → Gol
 8. **Gold dimensional model**: I transformed the Silver data into a Gold-layer star schema consisting of four dimension tables and one fact table, making the dataset ready for analytics and business intelligence workloads.
 
 ## Pipeline Architecture
-<img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Pipeline_Architecture.png" width="1200">
+<img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Pipeline_Architecture.png" width="1800">
 
 | Medallion term | Equivalent term | Purpose |
 |---|---|---|
 | Bronze | Landing / Raw | Stores incrementally loaded source data in Parquet format while preserving data close to its ingested state |
 | Silver | Cleansed / Curated | Cleans, transforms, and deduplicates Bronze data to create a reliable dataset |
 | Gold | Presentation / Analytics | Converts curated Silver data into an analytics-ready dimensional model |
+<img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Databricks%20Workflow.jpg" width="800">
 
 ## Design Decisions
 
