@@ -18,7 +18,9 @@ Azure Databricks processes the ingested data through a Bronze → Silver → Gol
 
 ## How I Built It
 1. **Source ingestion**: I ingested the car sales dataset from GitHub into a SQL Server database using an Azure Data Factory Copy Activity.
+   
    <img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Github_Lookup.jpg" width="300">
+   
 2. **Watermark table**: I created a watermark table in SQL Server to store the last successfully processed load value, allowing each pipeline run to determine where the previous load stopped.
 3. **Incremental boundaries**: I used Lookup Activities in Azure Data Factory to retrieve the previous watermark value and determine the maximum available load value from the source.
 4. **Incremental loading**: I configured the pipeline to process only records within the current watermark range, preventing the entire dataset from being reprocessed during every run. This reduces unnecessary data movement, processing time, and compute usage.
