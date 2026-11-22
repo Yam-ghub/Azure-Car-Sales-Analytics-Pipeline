@@ -27,9 +27,9 @@ Azure Databricks processes the ingested data through a Bronze → Silver → Gol
    <img src="https://github.com/Yam-ghub/Azure-Car-Sales-Analytics-Pipeline/blob/main/img/Incremental_Load_Pipeline.png" width="800">
    
 
-5.**Bronze ingestion**: I used a second Copy Activity to move the incremental dataset from SQL Server into the Bronze layer of Azure Data Lake Storage as Parquet files.
+5. **Bronze ingestion**: I used a second Copy Activity to move the incremental dataset from SQL Server into the Bronze layer of Azure Data Lake Storage as Parquet files.
 
-6.**Watermark update**: I created the UpdateWatermarkTable stored procedure to update the stored watermark after the successful completion of the incremental load.
+6. **Watermark update**: I created the UpdateWatermarkTable stored procedure to update the stored watermark after the successful completion of the incremental load.
 
 7. **Silver transformation**: I used Azure Databricks to read the Bronze Parquet files and perform data cleaning, transformation, and deduplication before writing the refined data into the Silver layer.
    
